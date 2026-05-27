@@ -1,0 +1,36 @@
+### Health check
+GET http://localhost:5000/
+
+### Listar todas las tareas
+GET http://localhost:5000/flask_debugging_example_api/tareas
+
+### Filtrar por completadas
+# Esperamos solo las que tienen `completada: true` (ids 2 y 5).
+# BUG #1: la API devuelve TODAS las tareas, porque el filtro compara
+# el string 'true' contra el bool True.
+GET http://localhost:5000/flask_debugging_example_api/tareas?completada=true
+
+### Ordenar por fecha de vencimiento
+GET http://localhost:5000/flask_debugging_example_api/tareas?orden=vence
+
+### Obtener una tarea por id
+# BUG #3: deberia devolver la tarea 3, devuelve 404.
+GET http://localhost:5000/flask_debugging_example_api/tareas/3
+
+### Crear una tarea nueva
+POST http://localhost:5000/flask_debugging_example_api/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Sacar al perro",
+  "vence": "2026-06-05",
+  "prioridad": 2,
+  "completada": false
+}
+
+### Eliminar una tarea
+# BUG #3 propaga aca: la eliminacion nunca encuentra la tarea.
+DELETE http://localhost:5000/flask_debugging_example_api/tareas/3
+
+### Estadisticas
+GET http://localhost:5000/flask_debugging_example_api/tareas/stats
