@@ -18,7 +18,6 @@ flask-debugging-example-api/
 ├── app.py
 ├── requirements.txt
 ├── requests.http                       # Casos de prueba listos para REST Client / Thunder Client
-├── .vscode/launch.json                 # Config "Flask: levantar API (con debugger)"
 └── flask_debugging_example_api/
     ├── routes/
     │   └── tareas.py                   # /tareas, /tareas/<id>, /tareas/stats
@@ -54,8 +53,9 @@ pip install -r requirements.txt
 flask --app app.py run --host=0.0.0.0 --port=5000
 ```
 
-**Con el debugger de VS Code**: abrir el repo y presionar **F5**
-(config "Flask: levantar API (con debugger)").
+**Con el debugger de VS Code**: abrir `app.py` y presionar **F5** → seleccionar
+**"Python Debugger: Debug Python File"**. Asegurarse de que `FLASK_DEBUG=1` este
+seteado para activar tambien el debugger interactivo de Werkzeug en el navegador.
 
 La API queda en `http://localhost:5000/flask_debugging_example_api/tareas`.
 
@@ -91,7 +91,7 @@ Resumen:
 
 ## Como debuggear
 
-1. Levantar la API con la config **"Flask: levantar API (con debugger)"** (F5).
+1. Levantar la API con el debugger: abrir `app.py` y presionar **F5**.
 2. Poner un breakpoint en, por ej., `services/tareas.py::obtener` (linea del `if`).
 3. Desde `requests.http` ejecutar `GET /tareas/3`.
 4. El debugger se detiene. Inspeccionar `t['id']` y `tarea_id` en el panel

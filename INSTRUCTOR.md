@@ -6,7 +6,8 @@
 
 1. Tener instalada la extension **REST Client** o **Thunder Client** en VS Code
    (para ejecutar `requests.http` con un click).
-2. Levantar la API con la config **"Flask: levantar API (con debugger)"** (F5).
+2. Levantar la API con el debugger: abrir `app.py` y presionar **F5** → seleccionar
+   **"Python Debugger: Debug Python File"**.
 
 ## Bug #1 — filtro `completada` no funciona
 
@@ -161,4 +162,5 @@ Mostrar el **debugger de Werkzeug** (la pantalla de error interactiva que aparec
 en el browser cuando hay un 500). Cada frame del stack tiene un boton "console"
 que abre un REPL en ese contexto. Es muy util cuando no tenes el IDE a mano.
 
-Para activarlo: `FLASK_DEBUG=1` (ya esta en el `launch.json`).
+Para activarlo: setear `FLASK_DEBUG=1` antes de correr la app (en Windows:
+`$env:FLASK_DEBUG=1; python app.py`).
